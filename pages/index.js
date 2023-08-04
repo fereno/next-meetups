@@ -1,6 +1,8 @@
 import {Fragment} from "react";
 import MeetupList from "../components/meetups/MeetupList";
 import NewMeetupPage from "./new-meetup";
+import {useEffect} from "react";
+import {useState} from "react";
 
 const DUMMY_MEETUPS = [
   {
@@ -29,9 +31,14 @@ const DUMMY_MEETUPS = [
 ];
 
 function HomePage() {
+  const [meetupList, setMeetupList] = useState([]);
+
+  useEffect(() => {
+    setMeetupList(DUMMY_MEETUPS);
+  }, []);
   return (
     <Fragment>
-      <MeetupList meetups={DUMMY_MEETUPS} />
+      <MeetupList meetups={meetupList} />
     </Fragment>
   );
 }

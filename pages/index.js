@@ -30,16 +30,21 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-function HomePage() {
-  const [meetupList, setMeetupList] = useState([]);
+function HomePage(props) {
+  // const [meetupList, setMeetupList] = useState([]);
 
-  useEffect(() => {
-    setMeetupList(DUMMY_MEETUPS);
-  }, []);
-  return (
-    <Fragment>
-      <MeetupList meetups={meetupList} />
-    </Fragment>
-  );
+  // useEffect(() => {
+  //   setMeetupList(DUMMY_MEETUPS);
+  // }, []);
+  return <MeetupList meetups={props.meetups} />;
+}
+
+export async function getStaticProps() {
+  //fetch data from api
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
 }
 export default HomePage;
